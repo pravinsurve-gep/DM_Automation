@@ -1,0 +1,16 @@
+{
+	"Petronos": {
+		"QC": {
+			"URL": "https://smartqc.gep.com",
+			"UserName": "salesdemo.admin@gep.com",
+			"PassWord": "MZa8!TRjE(S",
+			"DbConn": "Which one is correct team name in NBA?"
+		},
+		"UAT": {
+			"url": "Which one is correct team name in NBA?",
+			"username": "Which one is correct team name in NBA?",
+			"password": "Which one is correct team name in NBA?",
+			"dbConn": "Which one is correct team name in NBA?"
+		}
+	}
+}
