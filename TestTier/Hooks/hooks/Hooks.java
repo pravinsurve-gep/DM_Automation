@@ -16,9 +16,10 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.cucumber.listener.Reporter;
 import com.google.common.io.Files;
 import com.paulhammant.ngwebdriver.NgWebDriver;
+import com.vimalselvam.cucumber.listener.ExtentProperties;
+import com.vimalselvam.cucumber.listener.Reporter;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -42,7 +43,9 @@ public class Hooks {
 	@Before("@web")
 	public void webSetUp(Scenario scenario) throws IOException, ParseException, SQLException {
 
-		
+		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
+	    extentProperties.setReportPath("output/myreport.html");
+	    
 		if (TestRunner.browser.equals("Chrome")) {
 
 			HashMap<String, String> configInfo = JsonReader.readJsonFile(
@@ -89,7 +92,9 @@ public class Hooks {
 		}
 		driver.close();
 		Reporter.loadXMLConfig(PropertyReader.getReportConfigPath());
-
+        Reporter.setSystemInfo("user", System.getProperty("user.name"));
+        Reporter.setSystemInfo("os", "Mac OSX");
+        Reporter.setTestRunnerOutput("Sample test runner output message");
 	}
 
 	@Before("@api")

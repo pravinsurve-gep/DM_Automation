@@ -2,7 +2,7 @@ package steps;
 
 import org.testng.Assert;
 
-import com.cucumber.listener.Reporter;
+import com.vimalselvam.cucumber.listener.Reporter;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;

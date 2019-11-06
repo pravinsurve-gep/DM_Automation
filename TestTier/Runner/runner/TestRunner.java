@@ -11,15 +11,18 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.cucumber.listener.ExtentProperties;
+import com.vimalselvam.cucumber.listener.ExtentProperties;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
 import utils.DataTierUtils;
 
-@CucumberOptions(features = "classpath:features", plugin = { "json:target/cucumber-report-feature-composite.json",
-		"com.cucumber.listener.ExtentCucumberFormatter:" },tags = {"@web","@webtest2"}, glue = { "steps", "hooks" }, dryRun = false)
+
+@CucumberOptions(features = "classpath:features"
+, plugin = { "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:" }
+, tags = {"@web","@webtest2"}
+, glue = { "steps", "hooks" }, dryRun = false)
 /*tags = {"~@Ignore"},*/
 public class TestRunner {
 	private TestNGCucumberRunner testNGCucumberRunner;
@@ -46,18 +49,17 @@ public class TestRunner {
 	}
 
 	@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
-	public void feature(CucumberFeatureWrapper cucumberFeature) {
+	public void feature(CucumberFeatureWrapper cucumberFeature) throws Throwable {
 		testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
 	}
 
 	@DataProvider
 	public Object[][] features() {
-		return testNGCucumberRunner.provideFeatures();
+		return testNGCucumberRunner.provideFeatures(); 
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void tearDownClass() throws Exception {
-
 		testNGCucumberRunner.finish();
 	}
 }
